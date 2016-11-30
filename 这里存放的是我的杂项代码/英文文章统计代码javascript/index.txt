@@ -1,0 +1,18 @@
+Much Much of the existing research on textual of information Much pro-cessing has been focused on mining and retrieval of factual information. Little works had been done on the process of mining opinions until only recently. Automatic extraction of customers' opinions can better benefit both customers and manufacturers. Product review mining can provide effective information that are classifying customer reviews as "recom-mended" or "not recommended" based on customers' opin-ions for each product feature. In this cases, customer reviews highlight opinion about product features from various Mer-chant sites. However, many reviews are so long and only a few sentences contain opinions for product features.
+
+For a popular product, the number of reviews can be in hundreds or even in thousands, which is difficult to be read one by one. Therefore, automatic extraction and summariza-tion of opinion are required for each feature. Actually, when a user expresses opinion for a product, he/she states about the product as a whole or about its features one by one. Feature identification in product is the first step of opinion mining.
+application and opinion words extraction is the second step which is critical to generate a useful summary by classifying polarity of opinion for each feature. Therefore, we have to extract opinion for each feature of a product.
+
+In this paper, we take a written review as input and pro-duce a summary review as output. Given a set of customer reviews of a particular product, we need to perform the following tasks:
+
+identifying product feature that customer com-mented on;
+
+extracting opinion words or phrases through adjec-tive, adverb, verb, and noun and determining the orientation;
+
+generating the summary.
+
+We use a part-of-speech tagger to identify phrases in the input text that contains adjective or adverb or verb or nouns as opinion phrases. A phrase has a positive semantic orientation when it has good associations (e.g., "awesome camera") and a negative semantic orientation when it has bad associations (e.g., "low battery").
+
+The rest of the paper is organized as follows. Section 2 describes the related work of this paper. Section 3 elabo-rates theoretical background for opinion mining. Section 4 expresses methodology and experiments of the system and Section 5 describes conclusion.
+
+Every year, the world is keeping their eyes on the Nobel Prize in literature, the winner will gain the fame and fortune and making his writing career reach the top. Chinese culture has more than 5 thousand years' history and there are many great works that famous around the world. So why Chinese writers have such a long way to win the Nobel Prize. The most obvious factor is the language. English as the international language is accepted by the world and Chinese great works need to be translated into English, so as to be read by the judges. But the bad thing is that during the translation, the artistic conception has loss in some way and only the main meaning is left. So we don't need to question about our literature, it is excellent and some day the world will see it.
