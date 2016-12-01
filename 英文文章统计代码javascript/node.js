@@ -8,14 +8,14 @@ fs.readFile('C:/Users/Zhendong Ren/Desktop/js/index.txt',function(err,data){
 	var array = datas.split(/\s+/)
 	for(var i=0;i<array.length;i++){
 		if(array[i].match(/[^a-zA-Z-]/)){
-			array[i] = array[i].replace(/[.?!,<>;:"()']+/g,'')
+			array[i] = array[i].replace(/[^a-zA-Z-]+/g,'')//替换掉不是英文的字符为空
 			// var arr = array[i].split('').pop()
 		}
 		if(array[i].match(/[12345678]/)){
 			array.splice(i,1)
 		}
 	}
-	for(var i=0;i<array.length;i++){
+	for(var i=0;i<array.length;i++){//打印不符合条件的数据
 		if(array[i].match(/[^a-zA-Z-]/)){
 			console.log(array[i]+' ' +i)
 			// console.log(i)
