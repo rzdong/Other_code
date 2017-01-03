@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>登录</title>
+<style>
+.p1{
+width:380px;
+height:40px;
+font-family:隶书;
+font-size:30px;
+color:#000000;
+font-weight:bold;
+	}
+</style>
+</head>
+
+<body background="images/登陆注册背景.jpg">
+
+
+
+<div style="position: relative; top:50px;" align="center">
+  <p class="p1">请输入用户名和密码来登录</p></div>
+<div style="position: relative; top:60px;" align="center"><hr size="1" width="50%" color="#000000"></div>
+<div style="position: relative; top:50px;" align="center"><hr size="3" width="30%" color="#000000"></div>
+<div style="position: relative; top:38px;" align="center"><hr size="5" width="20%" color="#000000"></div>
+<form action="accountpassword.php" method="post">
+<div style="position: relative; top:70px;" align="center">
+<table width="250" height="112" border="0" cellpadding="0" cellspacing="3">
+  <tr>
+    <td width="30%" height="15px"><font size="+1" face="隶书">&nbsp;账号 :</font></td>
+    <td height="15px"><input type="text" name="M1" size="18" pattern="^[A-Za-z_0-9]+$" required title="账号只能是：字母数字下划线"></td>
+  </tr>
+  <tr>
+    <td width="30%" height="15px"><font size="+1" face="隶书">&nbsp;密码 :</font></td>
+    <td height="15px"><input type="password" name="M2" size="18" pattern="^.{1,8}$" title="密码只能是：小于八位的字符"></td>
+  </tr>
+  <tr>
+  	<td colspan="2" align="center"  height="15px">
+    <input type="submit" value="登陆" name="A1">
+    <input type="reset" value="重置" name="A2">
+    </td>
+  </tr>
+</table>
+</div>
+</form>
+
+<div  style="position: relative; top:100px;" align="center"><font size="+1" face="隶书"><a href="zhuce.html" style=" text-decoration:none">没账号？点击这里...</a></font>
+
+
+
+</div>
+</body>
+</html>

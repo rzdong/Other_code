@@ -1,0 +1,318 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>旅游中国网</title>
+<link rel="stylesheet" href="css/主页样式.css" type="text/css">
+
+<script language="javascript">
+function mousein1()//打开“首页” 菜单menu1的函数
+{
+	if(window.event.toElement.id!="menu" && window.event.toElement.id!="link")
+	{
+		menu1.style.visibility="visible";
+	}
+}
+function mouseout1()//隐藏“首页” 菜单menu1的函数
+{
+	if(window.event.toElement.id!="menu" && window.event.toElement.id!="link")
+	{
+		menu1.style.visibility="hidden";
+	}
+}
+function mousein2()//打开“联系我们” 菜单menu1的函数
+{
+	if(window.event.toElement.id!="menu" && window.event.toElement.id!="link")
+	{
+		menu2.style.visibility="visible";
+	}
+}
+function mouseout2()//打开“联系我们” 菜单menu1的函数
+{
+	if(window.event.toElement.id!="menu" && window.event.toElement.id!="link")
+	{
+		menu2.style.visibility="hidden";
+	}
+}
+function MM_showHideLayers() { //v9.0
+  var i,p,v,obj,args=MM_showHideLayers.arguments;
+  for (i=0; i<(args.length-2); i+=3) 
+  with (document) if (getElementById && ((obj=getElementById(args[i]))!=null)) { v=args[i+2];
+    if (obj.style) { obj=obj.style; v=(v=='show')?'visible':(v=='hide')?'hidden':v; }
+    obj.visibility=v; }
+}
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+</script>
+<style>
+.pic{ position:absolute; left:68px;top250px}
+.picc{position: absolute;left:209px; top:430px}
+.picd{
+	position: absolute;
+	left: 0px;
+	top: 460px;
+	width: 100%;
+	height: 1;
+}
+.pic4{
+	position: absolute;
+	left: 0px;
+	top: 550px;
+	width: 100%;
+
+}
+.pic5{
+	position: absolute;
+	left: 0px;
+	top: 495px;
+	width: 100%;
+
+}
+.pic6{
+	position: absolute;
+	left: 0px;
+	top: 950px;
+	width: 100%;
+
+}
+.tdcxqd{
+    width: 20px;
+	height: 20px;	
+}
+
+
+}
+</style>
+</head>
+
+<body background="images/网页背景1.png" onLoad="MM_preloadImages('images/chi1.png','images/zhu1.png','images/wan1.png','images/重庆图标.png','images/四川图标.png')">
+<table width="100%" border="0">
+  <tr>
+    <td height="75" width="25%" align="left"><img src="images/logo.png"  alt="" width="140" height="57" usemap="#Map2"/></td>
+    <td height="75" width="50%" align="center"><a href="#" class="one">&nbsp;我的主页&nbsp;</a>&nbsp;|&nbsp;<a href="#" class="one">&nbsp;客服 </a>&nbsp;|&nbsp;<a href="#" class="one"> 帮助 </a></font>&nbsp;|&nbsp;<a href="#" class="one">&nbsp;English&nbsp;</a></td>
+    <td height="75" width="25%" align="right"><img src="images/登陆注册图标1.png"  alt="" width="140" height="57" usemap="#Map"/></td>
+  </tr>
+</table>
+<div style="position: absolute; width: 100%; left: 0px; top: 98px;">
+  <hr>
+</div>
+
+<div style="position: absolute; left: 19.5%; top: 109px; height:150px; width:75px;">
+<center><div id="back" onMouseOut="mouseout1()">
+      <span id="menubar" onMouseOver="mousein1()">
+      <font face="隶书" size="+2" color="#000000">首页</font>
+      <div id="menu1" style="visibility:hidden; position:relative;top:5px">
+        <a href="#" id="idstyle">吃</a><br>
+        <a href="#" id="idstyle">喝</a><br>
+        <a href="#" id="idstyle">玩</a><br>
+  		<a href="#" id="idstyle">乐</a><br></div></span></div></center>
+</div>
+<div style="position: absolute; left: 75%; top: 109px; height:150px; width:75px;">
+<center><div id="back" onMouseOut="mouseout2()">
+      <span id="menubar" onMouseOver="mousein2()">
+      <font face="隶书" size="+2" color="#000000">美景</font>
+      <div id="menu2" style="visibility:hidden; position:relative;top:5px">
+        <a href="#" id="idstyle">一</a><br>
+        <a href="#" id="idstyle">二</a><br>
+        <a href="#" id="idstyle">三</a><br>
+        <a href="#" id="idstyle">四</a><br></div></span></div></center>
+</div>
+
+<div style="position: absolute; left:46%; top: 105px; height: 50; width: 100;"><img src="images/127761.png" width="100" height="32"  alt=""/></div>
+<div style="position: absolute; left: 0px; width: 100%; top: 133px;"><hr ><!--这是水平线，上面是图中央的花-->
+</div>
+
+<center>
+<div style="position: absolute; width: 100%; top: 157px; left: 10px;">
+
+    <center><div id="a" class="pic" align="center"><img src="images/chun.jpg" width="79%" height="302"  alt=""/></div></center>
+    <center><div id="b" class="pic" align="center"><img src="images/xia.jpg" width="79%" height="302"  alt=""/></div></center>
+    <center><div id="c" class="pic" align="center"><img src="images/qiu.jpg" width="79%" height="302"  alt=""/></div></center>
+    <center><div id="d" class="pic" align="center"><img src="images/dong.jpg" width="79%" height="302"  alt=""/></div></center> 
+</div></center>
+<div class="picc">
+    <table width="20" border="0" cellspacing="0" cellpadding="0">
+  		<tr>
+    	  <td><input type="submit" onMouseOver="MM_showHideLayers('a','','show','b','','hide','c','','hide','d','','hide')" value="1"></td>
+    	  <td><input type="submit" onMouseOver="MM_showHideLayers('a','','hide','b','','show','c','','hide','d','','hide')" value="2"></td>
+          <td><input type="submit" onMouseOver="MM_showHideLayers('a','','hide','b','','hide','c','','show','d','','hide')" value="3"></td>
+          <td><input type="submit" onMouseOver="MM_showHideLayers('a','','hide','b','','hide','c','','hide','d','','show')" value="4"></td>
+        </tr>
+    </table>
+</div>
+<div class="picd">
+<hr size="3" color="#0099CC">
+</div>
+<div class="pic5">
+<table width="1000" border="0" cellspacing="0" cellpadding="0" align="center" bordercolor="#33FF00">
+  <tr>
+    <td width="25%"><font face="隶书" size="+3" color="#0099FF">旅行必备：</font></td>
+    <td width="25%">&nbsp;</td>
+    <td width="25%">&nbsp;</td>
+    <td width="25%">&nbsp;</td>
+  </tr>
+</table>
+</div>
+<div class="pic4">
+  <table width="910" border="1" cellspacing="10" cellpadding="0" align="center">
+  <tr>
+    <td width="25%"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image8','','images/chi1.png',1)"><img src="images/chi.png" alt="吃" width="100%" height="215" id="Image8"></a></td>
+    <td width="25%"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image9','','images/zhu1.png',1)"><img src="images/zhu.jpg" alt="住" width="100%" height="215" id="Image9"></a></td>
+    <td width="25%"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image10','','images/xing1.png',1)"><img src="images/xing.jpg" alt="行" width="100%" height="215" id="Image10"></a></td>
+    <td width="25%"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image11','','images/wan1.png',1)"><img src="images/wan.png" alt="玩" width="100%" height="215" id="Image11"></a></td>
+  </tr>
+</table>
+</div>
+<div  style="position: absolute; left: 0px; width: 100%; top: 830px; background-color: #FFFFFF; layer-background-color: #FFFFFF; border: 1px none #000000;"><hr size="1" color="#0099CC">
+</div>
+
+<div class="pic6"><table width="1000" border="1" cellspacing="0" cellpadding="0" align="center" height="500px">
+  <tr>
+    <td  width="33.3%">
+    
+     <table width="100%" height="100%" border="0" cellspacing="1" cellpadding="0">
+     <tr>
+       <td>&nbsp;</td>
+       <td>&nbsp;&nbsp;<a href="#" class="tw">解放碑</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="tw">朝天门</a></td>
+
+     </tr>
+     <tr>
+       <td width="30%"> <a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image12','','images/重庆图标.png',1)"><img src="images/重庆图标1.png" alt="重庆" width="80" height="80" id="Image12"></a>
+</td>
+       <td>&nbsp;&nbsp;<a href="#" class="tw">洋人街</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="tw">磁器口</a></td>
+     </tr>
+     <tr>
+       <td>&nbsp;</td>
+       <td>&nbsp;&nbsp;<a href="#" class="tw">洪崖洞</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="tw">海底世界</a></td>
+     </tr>
+     </table>
+
+    </td>
+    <td width="33.3%">
+       <table width="100%" height="100%" border="0" cellspacing="1" cellpadding="0">
+     <tr>
+       <td>&nbsp;</td>
+       <td>&nbsp;&nbsp;<a href="#" class="tw">西湖</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="tw">灵隐寺</a></td>
+     </tr>
+     <tr>
+       <td width="30%"> <a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image13','','images/杭州图标.png',1)"><img src="images/杭州图标1.png" alt="杭州" width="80" height="80" id="Image13"></a>
+
+</td>
+       <td>&nbsp;&nbsp;<a href="#" class="tw">雷峰塔</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="tw">宋城</a></td>
+     </tr>
+     <tr>
+       <td>&nbsp;</td>
+       <td>&nbsp;&nbsp;<a href="#" class="tw">白堤</a> &nbsp;&nbsp&nbsp;&nbsp;&nbsp;<a href="#" class="tw">千岛湖</a></td>
+     </tr>
+     </table>
+
+     </td>
+    <td width="33.3%">
+      <table width="100%" height="100%" border="0" cellspacing="1" cellpadding="0">
+     <tr>
+       <td>&nbsp;</td>
+       <td>&nbsp;&nbsp;<a href="#" class="tw">成都</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="tw">乐山</a></td>
+     </tr>
+     <tr>
+       <td width="30%"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image14','','images/四川图标.png',1)"><img src="images/四川图标1.png" alt="四川" width="80" height="80" id="Image14"></a>
+
+</td>
+       <td>&nbsp;&nbsp;<a href="#" class="tw">峨眉</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="tw">平乐古镇</a></td>
+     </tr>
+     <tr>
+       <td>&nbsp;</td>
+       <td>&nbsp;&nbsp;<a href="#" class="tw">九寨沟</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="tw">都江堰</a></td>
+     </tr>
+     </table>
+
+     </td>
+  </tr>
+  <tr>
+    <td>
+     <table width="100%" height="100%" border="0" cellspacing="1" cellpadding="0">
+     <tr>
+       <td>&nbsp;</td>
+       <td>&nbsp;&nbsp;<a href="#" class="tw">龙门</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="tw">香格里拉</a></td>
+     </tr>
+     <tr>
+       <td width="30%"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image15','','images/云南图标.png',1)"><img src="images/云南图标1.png" alt="云南" width="80" height="80" id="Image15"></a>
+
+</td>
+       <td>&nbsp;&nbsp;<a href="#" class="tw">丽江</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="tw">西双版纳</a></td>
+     </tr>
+     <tr>
+       <td>&nbsp;</td>
+       <td>&nbsp;&nbsp;<a href="#" class="tw">大理</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="tw">洱海</a></td>
+     </tr>
+     </table>
+
+   </td>
+    <td>
+      <table width="100%" height="100%" border="0" cellspacing="1" cellpadding="0">
+     <tr>
+       <td>&nbsp;</td>
+       <td>&nbsp;&nbsp;<a href="#" class="tw">天安门</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="tw">故宫</a></td>
+     </tr>
+     <tr>
+       <td width="30%"> <a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image12','','images/重庆图标.png',1)"><img src="images/重庆图标1.png" alt="重庆" width="80" height="80" id="Image12"></a>
+</td>
+       <td>&nbsp;&nbsp;<a href="#" class="tw">长城</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="tw">颐和园</a></td>
+     </tr>
+     <tr>
+       <td>&nbsp;</td>
+       <td>&nbsp;&nbsp;<a href="#" class="tw">天坛</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="tw">北海公园</a></td>
+     </tr>
+     </table>
+
+    </td>
+    <td>
+      <table width="100%" height="100%" border="0" cellspacing="1" cellpadding="0">
+     <tr>
+       <td>&nbsp;</td>
+       <td>&nbsp;&nbsp;<a href="#" class="tw">中山陵</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="tw">玄武湖</a></td>
+     </tr>
+     <tr>
+       <td width="30%"> <a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image12','','images/重庆图标.png',1)"><img src="images/重庆图标1.png" alt="重庆" width="80" height="80" id="Image12"></a>
+</td>
+       <td>&nbsp;&nbsp;<a href="#" class="tw">夫子庙</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="tw">珍珠泉</a></td>
+     </tr>
+     <tr>
+       <td>&nbsp;</td>
+       <td>&nbsp;&nbsp;<a href="#" class="tw">总统府</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="tw">明孝陵</a></td>
+     </tr>
+     </table>
+    </td>
+  </tr>
+</table>
+</div>
+
+<map name="Map">
+  <area shape="rect" coords="3,0,70,55" href="denglu.html" target="_blank">
+  <area shape="rect" coords="72,5,141,54" href="zhuce.html" target="_blank">
+</map>
+<map name="Map2">
+  <area shape="rect" coords="1,-1,142,56" href="#">
+</map>
+<div style=" position:relative;top: 1500px;" align="center"><p class="name">任振东2013211467<br>赵如冰2013211444<br>向可立2013211463<br><br><br><br></p></div>
+
+
+</html>
