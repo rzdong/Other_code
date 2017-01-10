@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body bgcolor="#222222">
+	
+</body>
+<script>
+	var point = [];
+	var width = window.innerWidth;
+	var height= window.innerHeight;
+	var current_point = { //鼠标指针对象
+		x: null,
+		y: null,
+		max:20000
+	}
+	var canvas = document.createElement('canvas')
+	var ctx = canvas.getContext("2d")
+	canvas.style.cssText = "position:fixed;top:0;left:0;"
+	document.body.appendChild(canvas)
+	var frame_func = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(func) {
+            window.setTimeout(func, 1000 / 45);
+        }
+    var current_point = {
+            x: null, //当前鼠标x
+            y: null, //当前鼠标y
+            max: 20000
+        };
+    var arr_point
+	function init (){
+		return {
+			l:1,  //id
+			z:-1,  //z-index
+			c:"255,255,255,",  //color
+			n:120  //number
+		}
+	}
+	function Get_init(){ //产生99个点
+		arr_point = init()
+		for(var i=0;i<arr_point.n;i++){
+			var x = Math.random() * width;
+			var y = Math.random() * height;
+			var px= 3 * Math.random() - 1.5;
+			var py= 3 * Math.random() - 1.5;
+			var pr = Math.random() * 2+1
+			point.push({
+				x:x,
+				y:y,
+				xa: px,
+				ya: py,
+				r : pr,
+				max: 10000
+			})
+		}
+	}
+	function draw_canvas(){
+		ctx.clearRect(0,0,width,height)
+		var all_array = [current_point].concat(point);
+		var e,x_dist,y_dist,dist;
+		for (var i = 0; i < point.length; i++) {
+			point[i].x += point[i].xa;
+			point[i].y += point[i].ya;
+			point[i].xa *= point[i].x > width || point[i].x < 0 ? -1 : 1;
+			point[i].ya *= point[i].y > height || point[i].y < 0 ? -1 : 1;
+			ctx.fillStyle="#fff"
+			ctx.fillRect(point[i].x - point[i].r / 2, point[i].y - point[i].r / 2, point[i].r, point[i].r);
+			for (var j = 0; j < all_array.length; j++) {
+				e = all_array[j];
+				// console.log(e)
+				if (point[i] !== e &&  null !== e.x  && null !== e.y) {
+					x_dist = point[i].x - e.x;
+					y_dist = point[i].y - e.y;
+					dist   = x_dist * x_dist + y_dist * y_dist // 两个点的距离
+					if (dist < e.max) {
+						if (e===current_point && dist>=e.max /2) {
+							point[i].x -= 0.02 * x_dist;
+							point[i].y -= 0.02 * y_dist;
+						}
+					}
+					d = (e.max - dist) / e.max
+					ctx.beginPath();
+					ctx.lineWidth = d / 2;
+					ctx.strokeStyle = "rgba(" + arr_point.c + (d + 0.2) +")";
+					ctx.moveTo(point[i].x, point[i].y);
+					ctx.lineTo(e.x, e.y);
+					ctx.stroke();
+				}
+			}
+			all_array.splice(all_array.indexOf(point[i]), 1)
+
+		}
+
+
+		frame_func(draw_canvas);
+	}
+	function onreSize (){
+		// var canvas = document.getElementsByTagName('canvas')[0];
+		width = canvas.width = window.innerWidth;
+		height = canvas.height = window.innerHeight;
+		// console.log(canvas)
+	}
+	onreSize();
+	Get_init();
+	window.onresize = onreSize;
+	window.onmousemove = function(e){
+		e = e || window.event;
+		current_point.x = e.clientX, current_point.y = e.clientY;
+		console.log("yidong")
+	};
+	window.onmouseout = function() {
+        current_point.x = null, current_point.y = null;
+    };
+	setTimeout(function() {
+        draw_canvas();
+    }, 200);
+	
+	
+
+
+</script>
+</html>
