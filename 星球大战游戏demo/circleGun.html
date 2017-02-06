@@ -20,8 +20,9 @@
 		var height = window.innerHeight
 		canvas.width = width
 		canvas.height= height
-		var R = 100
+		var R = 65
 		var rr = 5
+		var v = 5
 		var x = width / 2 //canvas中心的坐标
 		var y = height/ 2
 		var zidan = []
@@ -30,14 +31,21 @@
 		var startYY
 		var endXX
 		var endYY
+		var num=4
 		var xx,yy, //鼠标在页面中的坐标
 			xxx,yyy //炮口在页面中的坐标
 		(function start(){
 			window.requestAnimationFrame(start)
-			console.log("haha")
-			init()
+			// console.log("haha")
+			if (num == 4) {
+				init()
+				num = 0
+			}
+			num++
 			draw()
-			// change()
+			test()
+			change()
+
 		})()
 		function init(){//制造子弹
 			startXX = xxx
@@ -63,13 +71,30 @@
 				ctx.beginPath()
 				ctx.moveTo(zidan[i].startX,zidan[i].startY)
 				ctx.lineTo(zidan[i].endX,zidan[i].endY)
+				ctx.lineWidth = 2
 				ctx.strokeStyle = '#000'
 				ctx.stroke()
 				ctx.restore()
 			}
 		}
+		function test(){
+			for (var i = 0; i < zidan.length; i++) {
+				if (zidan[i].startX > width || zidan[i].startX<0||zidan[i].startY > height|| zidan[i].startY <0) {
+					zidan.splice(i,1)
+					i--
+				}
+			}
+			console.log(zidan.length)
+		}
 		function change(){//改变子弹
-
+			var b 
+			for (var i = 0; i < zidan.length; i++) {
+				b = Math.sqrt((zidan[i].endX - x)*(zidan[i].endX - x) + (zidan[i].endY - y)*(zidan[i].endY - y))
+				zidan[i].startX = zidan[i].endX
+				zidan[i].startY = zidan[i].endY
+				zidan[i].endX   = (zidan[i].startX - x) * (b + rr) / b + x
+				zidan[i].endY   = (zidan[i].startY - y) * (b + rr) / b + y
+			}
 		}
 		function Move(event){
 			xx = event.pageX
