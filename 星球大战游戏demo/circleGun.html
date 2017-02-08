@@ -9,6 +9,9 @@
 			padding: 0;
 			overflow: hidden;
 		}
+		canvas {
+			background-color: #eee
+		}
 	</style>
 </head>
 <body>
@@ -20,9 +23,9 @@
 		var height = window.innerHeight
 		canvas.width = width
 		canvas.height= height
-		var R = 65
+		var R = 40
 		var rr = 5
-		var v = 5
+		var vv = 5
 		var x = width / 2 //canvas中心的坐标
 		var y = height/ 2
 		var zidan = []
@@ -31,21 +34,47 @@
 		var startYY
 		var endXX
 		var endYY
-		var num=4
+		var num=10
+		var chan = 0
+		var circl = 0
+		var changeEne = 0
 		var xx,yy, //鼠标在页面中的坐标
-			xxx,yyy //炮口在页面中的坐标
+			xxx,yyy; //炮口在页面中的坐标
+		var randomX,randomY,randomR
+		var xxxx,yyyy,rrrr;
+		var enemy = [] //敌人的数组
+		var GameState = true
+		var diren0 = {};
 		(function start(){
-			window.requestAnimationFrame(start)
+			if (GameState) {
+				window.requestAnimationFrame(start)
+				
+			}
 			// console.log("haha")
-			if (num == 4) {
+			if (num == 10) {
 				init()
 				num = 0
 			}
-			num++
+			if (circl == 50) {
+				circle()
+				circl = 0
+			}
 			draw()
 			test()
-			change()
-
+			if (changeEne = 4) {
+				changeEnemy()
+				changeEne = 0
+			}
+			testEnemy()
+			gameOver()
+			if(chan == 2){
+				change()
+				chan = 0
+			}
+			num++
+			circl++
+			changeEne++
+			chan++
 		})()
 		function init(){//制造子弹
 			startXX = xxx
@@ -55,6 +84,31 @@
 			zidan0 = {startX: startXX,startY: startYY,endX:endXX,endY:endYY}
 			zidan.push(zidan0)
 		}
+		function circle(){ //制造敌人
+			randomR = Math.random()+0.2
+			if (Math.random() > 0.5) {
+				if (Math.random() > 0.5) {
+					xxxx = Math.floor((Math.random() - 0.5)*(width+200) + 500)   //-100 ~ width +100
+					yyyy = Math.floor(Math.random()*100 + height)   // height ~ height + 100				
+				}else {
+					xxxx = Math.floor((Math.random() - 0.5)*(width+200) + 500)   //-100 ~ width +100
+					yyyy = Math.floor((Math.random()-1)*100)   //-100 ~ 0   
+				}
+			
+			}else {
+				if (Math.random() > 0.5) {
+					xxxx = Math.floor(Math.random()*100 + width)   //width ~ width +100
+					yyyy = Math.floor(Math.random()*height)   //0 ~ height					
+				}else {
+					xxxx = Math.floor((Math.random()-1)*100)   //-100 ~ 0
+					yyyy = Math.floor(Math.random()*height)   //0 ~ height
+				}
+			}
+			rrrr = Math.floor(randomR*13+7)
+			diren0 = {enemyX:xxxx,enemyY:yyyy,enemyR:rrrr,state:1}
+				
+			enemy.push(diren0)
+		}
 		function draw(){
 			ctx.clearRect(0,0,width,height)
 
@@ -62,6 +116,8 @@
 			ctx.beginPath()
 			ctx.moveTo(x,y)
 			ctx.lineTo(xxx,yyy)
+			ctx.lineWidth = 2
+			ctx.lineCap = "round"
 			ctx.strokeStyle = '#000'
 			ctx.stroke()
 			ctx.restore()
@@ -71,9 +127,25 @@
 				ctx.beginPath()
 				ctx.moveTo(zidan[i].startX,zidan[i].startY)
 				ctx.lineTo(zidan[i].endX,zidan[i].endY)
-				ctx.lineWidth = 2
-				ctx.strokeStyle = '#000'
+				ctx.lineWidth = 3
+				ctx.strokeStyle = '#006CFF'
 				ctx.stroke()
+				ctx.restore()
+			}
+
+			ctx.save()
+			ctx.beginPath()
+			ctx.arc(x, y, R, 0, 2*Math.PI)
+			ctx.strokeStyle = 'rgba(255,80,0,0.5)'
+			ctx.lineWidth = 3
+			ctx.stroke();
+			ctx.restore()
+
+			for (var i = 0; i < enemy.length; i++) {  //绘画每一个敌人
+				ctx.save()
+				ctx.beginPath()
+				ctx.arc(enemy[i].enemyX, enemy[i].enemyY, enemy[i].enemyR, 0, 2*Math.PI)
+				ctx.stroke();
 				ctx.restore()
 			}
 		}
@@ -84,16 +156,59 @@
 					i--
 				}
 			}
-			console.log(zidan.length)
+		}
+		var zzz
+		var eee
+		var ddd
+		function testEnemy(){ //碰撞检测
+			for (var i = 0; i < zidan.length; i++) {
+				zzz = zidan[i]
+				for (var j = 0; j < enemy.length; j++) {
+					 eee = enemy[j]
+					 d = (zzz.endX - eee.enemyX) * (zzz.endX - eee.enemyX) + (zzz.endY - eee.enemyY) * (zzz.endY - eee.enemyY)
+					 if (d < eee.enemyR * eee.enemyR) { //两个已经碰撞了
+					 	zidan.splice(i,1)
+					 	enemy.splice(j,1)
+					 	i--
+					 	j--
+					 }
+				}
+			}
+		}
+		var gameover
+		function gameOver(){
+			for (var i = 0; i < enemy.length; i++) {
+				gameover = (enemy[i].enemyX - x) * (enemy[i].enemyX - x) + (enemy[i].enemyY - y) * (enemy[i].enemyY - y)
+				if (gameover< (R+enemy[i].enemyR)*(R+enemy[i].enemyR)) {
+					GameState = false
+				}
+			}
+		}
+		var RR,enemyV
+		function changeEnemy(){ //改变敌人函数
+			for (var i = 0; i < enemy.length; i++) {
+				RR = Math.sqrt((enemy[i].enemyX-x)*(enemy[i].enemyX-x) + (enemy[i].enemyY-y)*(enemy[i].enemyY-y)) //两点之间的距离
+				enemyV = 10 / enemy[i].enemyR //移动速度大概在 4-1.25之间，体型最小的4，体型最大的1.5
+				/*if (enemy[i].state) {//圆会时不时的变大变小
+					enemy[i].enemyR += -2
+					enemy[i].state = 0
+				}else {
+					enemy[i].enemyR += 2
+					enemy[i].state = 1
+				}*/
+				enemy[i].enemyX = (enemy[i].enemyX - x) * (RR - enemyV) / RR + x
+				enemy[i].enemyY = (enemy[i].enemyY - y) * (RR - enemyV) / RR + y
+			}
 		}
 		function change(){//改变子弹
-			var b 
+			var b,bb;
 			for (var i = 0; i < zidan.length; i++) {
+				bb= Math.sqrt((zidan[i].startX - x)*(zidan[i].startX - x) + (zidan[i].startY - y)*(zidan[i].startY - y))
 				b = Math.sqrt((zidan[i].endX - x)*(zidan[i].endX - x) + (zidan[i].endY - y)*(zidan[i].endY - y))
-				zidan[i].startX = zidan[i].endX
-				zidan[i].startY = zidan[i].endY
-				zidan[i].endX   = (zidan[i].startX - x) * (b + rr) / b + x
-				zidan[i].endY   = (zidan[i].startY - y) * (b + rr) / b + y
+				zidan[i].startX = (zidan[i].startX - x) * (bb + vv) / bb + x
+				zidan[i].startY = (zidan[i].startY - y) * (bb + vv) / bb + y
+				zidan[i].endX   = (zidan[i].endX - x) * (b + vv) / b + x
+				zidan[i].endY   = (zidan[i].endY - y) * (b + vv) / b + y
 			}
 		}
 		function Move(event){
@@ -102,8 +217,31 @@
 			a = Math.sqrt((xx - x)*(xx - x) + (yy - y)*(yy - y))
 			xxx = (xx - x) * R / a + x
 			yyy = (yy - y) * R / a + y
+			state = true
 		}
-		window.addEventListener('mousemove',Move,false)
+		var sita,two
+		var state = false //默认执行按键
+		function keyDown(event){
+			if (state) { return } //如果为真，就返回
+			sita = Math.atan2(yyy - y, xxx - x) //计算出目前的sita坐标
+			if (event.keyCode == 38) {//上
+				two = sita - 2 * Math.PI / 180
+
+			}else if(event.keyCode == 40){
+				two = sita + 2 * Math.PI / 180
+			}else {
+				return
+			}
+
+			xxx = R * Math.cos(two) + x
+			yyy = R * Math.sin(two) + y
+		}
+		function keyUp(){
+			state = false
+		}
+		window.addEventListener('mousemove', Move, false)
+		window.addEventListener('keydown', keyDown, false)
+		window.addEventListener('keyup', keyUp, false)
 	</script>
 </body>
 </html>
