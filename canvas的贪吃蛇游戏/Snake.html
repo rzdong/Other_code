@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+	<script>
+		var canvas = document.getElementById('canvas')
+		var ctx = canvas.getContext('2d')
+		var width = window.innerWidth
+		var height= window.innerHeight
+		var snake = []
+		var point = {x: null, y: null, r:null}
+		var direction = 39
+		canvas.width = width
+		canvas.height= height;
+		var circleD = 30
+		initCircle()
+		initRect();
+		var changeNum = 25;
+
+		(function start(){
+			window.requestAnimationFrame(start)
+			test()
+			
+			if (changeNum == 25) {
+				change()
+				draw()
+				changeNum = 0
+			}
+			changeNum++
+		})()
+		
+		function initCircle(){
+			var randomX = Math.floor((Math.random()*width*0.9 + 30)/circleD)
+			var randomY = Math.floor((Math.random()*height*0.9 + 30)/circleD)
+			point.x = randomX
+			point.y = randomY
+			point.r = circleD/2
+		}
+		function initRect(){  //初始化蛇
+			var snakeX = Math.floor(Math.random()*width*0.5 + 100)
+			snakeX -= snakeX % circleD
+			var snakeY = Math.floor(Math.random()*width*0.5 + 100)
+			snakeY -= snakeY % circleD
+			var snake0 = {snakex: snakeX, snakey: snakeY}
+			snake.push(snake0)
+		}
+		function draw(){
+			ctx.clearRect(0,0,width,height)
+			ctx.save()
+			ctx.beginPath()
+			ctx.arc(point.x * circleD -15, point.y * circleD-15, point.r-2,0,Math.PI*2)
+			ctx.closePath()
+			ctx.fillStyle = "#f50"
+			ctx.fill()
+			ctx.restore()
+			ctx.save()
+			ctx.beginPath()
+			ctx.arc(point.x * circleD -15, point.y * circleD-15, point.r-5,0,Math.PI*2)
+			ctx.closePath()
+			ctx.fillStyle = "#ee0"
+			ctx.fill()
+			ctx.restore()
+			for (var i = 0; i < snake.length; i++) {
+				ctx.save()
+				ctx.fillStyle = 'rgba(0,0,0,' + (1-(0.5/snake.length*i)) + ')'
+				ctx.fillRect(snake[i].snakex, snake[i].snakey, circleD, circleD)
+				ctx.restore()
+				
+			}
+
+			for (var i = 0; i < Math.floor(height/circleD)+1; i++) {
+				ctx.save()
+				ctx.beginPath()
+				ctx.moveTo(0,i * circleD)
+				ctx.lineTo(width,i * circleD)
+				ctx.closePath()
+				ctx.strokeStyle = 'rgba(0,0,0,0.5)'
+				ctx.stroke()
+				ctx.restore()
+			}
+			for (var j = 0; j < Math.floor(width/circleD)+1; j++) {
+				ctx.save()
+				ctx.beginPath()
+				ctx.moveTo(j * circleD,0)
+				ctx.lineTo(j * circleD,height)
+				ctx.strokeStyle = 'rgba(0,0,0,0.5)'
+				ctx.closePath()
+				ctx.stroke()
+				ctx.restore()
+			}
+
+		}
+		function change(){
+			var snake_ = snake[0]
+			var snake_1
+			switch(direction){
+				case 38:
+					snake_1 = {snakex: snake_.snakex, snakey: snake_.snakey - 30}
+					break;
+				case 40:
+					snake_1 = {snakex: snake_.snakex, snakey: snake_.snakey + 30}
+					break;
+				case 37:
+					snake_1 = {snakex: snake_.snakex - 30, snakey: snake_.snakey}
+					break;
+				case 39:
+					snake_1 = {snakex: snake_.snakex + 30, snakey: snake_.snakey}
+					break;
+			}
+			snake.pop()
+			snake.unshift(snake_1)
+		}
+		function test(){
+			var xxx = snake[0].snakex + 15 //蛇头的中心x
+			var yyy = snake[0].snakey + 15//蛇头的中心y
+			var xxxx= point.x * circleD -15  //圆点的x
+			var yyyy= point.y * circleD-15//圆点的y
+			if (Math.sqrt((xxx-xxxx) * (xxx-xxxx) + (yyy-yyyy) * (yyy-yyyy)) < 5) {//吃到了一个豆豆
+				var zzz = {snakex: (xxxx - 15), snakey: (yyyy - 15)}
+				snake.push(zzz)
+				initCircle()  //新生成一个豆豆
+			}
+		}
+		function keyDown(event){
+			// var keycode = event.keyCode
+			switch(event.keyCode){
+				case 38:  //上
+				case 40:
+					if (direction == 38 || direction == 40) {
+						return
+					}else {
+						direction = event.keyCode
+					}
+					break;
+				case 37:  //下
+				case 39:
+					if (direction == 37 || direction == 39) {
+						return
+					}else {
+						direction = event.keyCode
+					}
+					break;
+			}
+			console.log(direction)
+		}
+		window.addEventListener('keydown', keyDown, false)
+	</script>
+</body>
+</html>
