@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Blinding</title>
+	<style>
+		.active {
+			color: #f00;
+		}
+	</style>
+</head>
+<body >
+<div id="app">
+	<ul>
+		<li v-for="(item, index) in items" v-bind:class="{active:index==index_}">{{item.text}}</li>
+	</ul>
+	<button v-on:click="checkout">点击切换到下一行</button>
+</div>
+<script>
+var app
+window.onload = function (){
+	app = new Vue({
+		el: '#app',
+		data: {
+			items: [
+				{text: '听最好的歌'},
+				{text: '开最快的车'},
+				{text: '进最好的医院'},
+				{text: '打最好的石膏'},
+				{text: '坐最好的轮椅'}
+			],
+			index_: 0
+		},
+		methods: {
+			checkout: function (){
+				if (this.index_ == 4) {
+					this.index_ = 0;
+					return;
+				}
+				this.index_ += 1 ;
+			}
+		}
+	})
+}
+</script>
+</body>
+	<script src="./vue.js"></script>
+</html>

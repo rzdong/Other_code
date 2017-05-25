@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>组件化开发</title>
+	<link rel="stylesheet" type="text/css" href="a/main.css">
+</head>
+<body>
+<div id="app">
+	<span class="header">打算做一个列表</span>
+	<input type="text" placeholder="edit me" v-model="text_message" v-on:keyup.enter="addOne">
+	<ul>
+		<first-component v-for="(item, index) in message" :value="item" :i="index" v-on:deleteobject="subThisObject" :key="item.text"></first-component>
+	</ul>
+</div>
+<script type="text/javascript" src="a/main.js"></script>
+</body>
+<script type="text/javascript" src="vue.js"></script>
+</html>

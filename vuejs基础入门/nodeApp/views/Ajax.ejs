@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Blinding</title>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body >
+<div id="app">
+	<span>有人给你留言，点击按钮就能看到</span><br><br>
+	<button v-on:click="getMessage(1)">第一条留言</button>
+	<button v-on:click="getMessage(2)">第二条留言</button>
+	<button v-on:click="getMessage(3)">第三条留言</button>
+	<p>message: {{message}}</p>
+	<p>time: {{time}}</p>
+
+	<span>想知道是谁留言，点击下方按钮查看</span><br><br>
+	<button v-on:click="getDetailed">查看详情</button>
+	<p>由 {{detailed.from}} 给 {{detailed.to}} 留下的信息 (这里可以使用v-if达到更好的效果)<br>时间 {{detailed.time}}，地点 {{detailed.address}}
+	</p><br> 
+	<input type="text" v-on:keyup="getArray" v-model="search" debounce="500">输入英文字符，回车完成
+	<!-- debounce -->
+	<ul>
+		<li v-for="item in items">{{item}}</li>
+	</ul>
+</div>
+<script>
+var app
+window.onload = function (){
+	app = new Vue({
+		el: '#app',
+		data: {
+			message: '如果请求成功，我就会改变',
+			time: '0:0:0',
+			detailed: {},
+			search: '', //请求参数
+			items: []  //
+		},
+		methods: {
+			getMessage: function(index){
+				var vThis = this
+				this.$http.get('/node/data/' + index ,{})
+					.then(function(data){
+						console.log(data)
+						var data = JSON.parse(data.bodyText)
+						vThis.message = data.message
+						vThis.time = data.time
+					},
+					function(){
+						console.log("filed")
+						var time = new Date()
+    					var value = time.getHours()+":"+time.getMinutes()+":"+time.getSeconds()
+						vThis.message = "请求失败了"
+						vThis.time = value
+				});
+			},
+			getDetailed: function(){
+				var vThis = this
+				this.$http.get('/node/person' ,{})
+					.then(function(data){
+						vThis.detailed = JSON.parse(data.bodyText)
+					},
+					function(){
+						//这里是请求失败的处理
+				});
+			},
+			getArray: function(){
+				var search = this.search
+				console.log(search)
+				var vThis = this
+				vThis.items = ["正在查找..."]
+				if (search == '') {
+					vThis.items = []
+				};
+				setTimeout(function(){
+					vThis.$http.get('/node/array/' + search ,{})
+						.then(function(data){
+							
+							console.log(data)
+							var items = JSON.parse(data.bodyText).array
+							if (items.length != 0) {
+								vThis.items = items;
+							}else {
+								vThis.items = ["查询无结果"]
+							}
+						},
+						function(){
+							//这里是请求失败的处理
+							console.log("filed")
+					});
+				}, 500)
+			}
+		}
+	})
+}
+</script>
+</body>
+	<script src="/js/vue.js"></script>
+	<script src="https://cdn.jsdelivr.net/vue.resource/1.3.1/vue-resource.min.js"></script>
+</html>

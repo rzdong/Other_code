@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Blinding</title>
+	
+</head>
+<body >
+<div id="app">
+	<p v-text="message"></p>   <!-- 绑定{{}} -->
+	<p v-html="blod_message"></p>   <!-- html绑定 -->
+	<p v-once>{{once_message}}</p>
+	<a href="{{url}}">点击这里跳转到百度</a> <!-- 属性绑定 -->
+	<a v-bind:href="url">点我才能跳转到百度</a>
+</div>
+<script>
+var app
+window.onload = function (){
+	app = new Vue({
+		el: '#app',
+		data: {
+			message: '<b>我是粗体</b>',
+			blod_message: '<b>你是个屁，我才是！</b>',
+			once_message: '我是一次性绑定，以后不论怎么改变我的值，我都不会变了',
+			url: "http://www.baidu.com"
+		}
+	})
+}
+</script>
+</body>
+	<script src="./vue.js"></script>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>toWayBlinding</title>
+	
+</head>
+<body >
+<div id="app">
+	<div v-for="item in message">{{item.text}}</div>
+	<select name="" id="">
+		<option v-for="item in message">{{item.text}}</option> <!-- value属性绑定v-bind: -->
+	</select>
+	<table>
+		<tr v-for="item in array">
+			<td v-for="itom in item">{{itom}}</td>
+		</tr>
+	</table>
+</div>
+<script>
+var app
+window.onload = function (){
+		app = new Vue({
+			el: '#app',
+			data: {
+				message: [
+					{text: "北京", number: 5000},
+					{text: "上海", number: 4000},
+					{text: "广州", number: 3000}
+				],
+				array: [
+					["beijing", 5000],
+					["shanghai", 4000],
+					["guangzhou", 3000]
+				]
+			}
+		})
+}
+</script>
+</body>
+	<script src="./vue.js"></script>
+</html>

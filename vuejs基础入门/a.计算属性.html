@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>toWayBlinding</title>
+	
+</head>
+<body >
+<div id="app">
+	<p>球的半径为：{{R}} M 和 {{r}} M</p>
+	<p>那么球R的表面积为：{{4*Math.PI*R*R}} M<sup>2</sup></p>
+	<p>那么球r的表面积为：{{4*Math.PI*r*r}} M<sup>2</sup></p>
+	<p>相差{{4*Math.PI*R*R - 4*Math.PI*r*r}} M<sup>2</sup></p><br />
+
+	<p>那么球R的体积为：{{4*Math.PI*R*R*R/3}} M<sup>3</sup></p>
+	<p>那么球r的体积为：{{4*Math.PI*r*r*r/3}} M<sup>3</sup></p>
+	<p>相差{{4*Math.PI*R*R*R/3 - 4*Math.PI*r*r*r/3}} M<sup>2</sup></p><br />
+
+	<p>那么球R的表面积为：{{R_area}} M<sup>2</sup></p>
+	<p>那么球r的表面积为：{{r_area}} M<sup>2</sup></p>
+	<p>相差{{sub_area}} M<sup>2</sup></p><br />
+
+	<p>那么球R的体积为：{{R_volume}} M<sup>3</sup></p>
+	<p>那么球r的体积为：{{r_volume}} M<sup>3</sup></p>
+	<p>相差{{sub_volume}} M<sup>3</sup></p><br />
+</div>
+<script>
+var app
+window.onload = function (){
+		app = new Vue({
+			el: '#app',
+			data: {
+				R: 5,
+				r: 2
+			},
+			computed: {
+				R_area: function(){
+					return 4*Math.PI*this.R*this.R
+				},
+				r_area: function(){
+					return 4*Math.PI*this.r*this.r
+				},
+				sub_area: function(){
+					return this.R_area - this.r_area
+				},
+				R_volume: function(){
+					return 4*Math.PI*this.R*this.R*this.R/3
+				},
+				r_volume: function(){
+					return 4*Math.PI*this.r*this.r*this.r/3
+				},
+				sub_volume: function(){
+					return this.R_volume - this.r_volume
+				}
+			}
+		})
+}
+</script>
+</body>
+	<script src="./vue.js"></script>
+</html>

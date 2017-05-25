@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>双向绑定实例</title>
+	<style>
+		* { box-sizing: border-box;}
+		input { width: 200px; height: 40px; padding: 10px; font-size: 20px; border-radius: 
+		}
+		ul { list-style: none; font-size: 20px; padding-left:0;}
+		li > button { width: 26px; height: 20px;margin-left: 20px;}
+	</style>
+</head>
+<body>
+<div id="app">
+	<input type="text" v-model="input_value" v-on:keyup.enter="Add"><span> 按下enter完成输入</span>
+	<ul>
+		<li v-for="(item, index) in message">
+			<span>{{item.text}}</span><button v-on:click="Delete(index)">X</button>
+		</li>
+	</ul>
+	<!-- <div v-for="(value, key, index) in object"> 对象遍历 Object.keys()-->
+</div>
+<script>
+var app
+window.onload = function (){
+		app = new Vue({
+			el: '#app',
+			data: {
+				input_value: '',
+				message: [
+					{text: "第一条数据"},
+					{text: "第二条数据"},
+					{text: "第三条数据"}
+				]
+			},
+			methods: {
+				Delete: function(index){
+					this.message.splice(index,1)
+				},
+				Add: function(){
+					var obj = {}
+					obj.text = this.input_value
+					this.message.push(obj)
+					this.input_value = ''
+				}
+			}
+		})
+}
+</script>
+
+</body>
+	<script src="./vue.js"></script>
+</html>

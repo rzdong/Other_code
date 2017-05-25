@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>toWayBlinding</title>
+	
+</head>
+<body >
+<div id="app">
+	<input type="text" v-model="message" placeholder="edit me">
+	<p>input.value is : {{message}}</p>   <!-- 绑定 v-once v-html="rawHtml" 例子在上一节中-->
+</div>
+<script>
+var app
+window.onload = function (){
+		app = new Vue({
+			el: '#app',
+			data: {
+				message: '' //app 实例 会托管data的属性 data.message === data.a 在这里输入的值会同时存入Vue实例中的data，而data值的改变又会影响到视图中的数据显示
+			}
+		})
+}
+</script>
+</body>
+	<script src="./vue.js"></script>
+</html>

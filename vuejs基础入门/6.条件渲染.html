@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>toWayBlinding</title>
+	<style>
+		#app > div { width: 100px; height: 100px; background-color:#006cee; display:inline-block; text-align: center; }
+		span {font-size: 70px; line-height: 100px;  color: #fff; }
+		button {display:inline-block;width: 100px;margin-top: 30px}
+	</style>
+</head>
+<body >
+<div id="app">
+	<div v-show="one"><span>1</span></div>
+	<div v-show="two"><span>2</span></div><br />
+	<button v-on:click="toggle('one')">切换一</button>
+	<button v-on:click="toggle('two')">切换二</button>
+
+</div>
+<script>
+var app
+window.onload = function (){
+		app = new Vue({
+			el: '#app',
+			data: {
+				one: true,
+				two: true
+			},
+			methods: {
+				toggle: function(value){
+					console.log(value)
+					switch (value) {
+						case 'one':
+							this.one = !this.one
+							break;
+						case 'two':
+							this.two = !this.two
+							break;
+					}
+				}
+			}
+		})
+}
+</script>
+</body>
+	<script src="./vue.js"></script>
+</html>
